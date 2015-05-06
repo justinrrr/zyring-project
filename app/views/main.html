@@ -1,6 +1,53 @@
 <div class="row">
+    <div class=" col-lg-offset-3 col-lg-3 col-md-offset-3 col-md-3">
+        <label>Start: </label>
+        <br>
+        <input type="text"
+               datepicker-popup="yyyy/MM/dd"
+               ng-model="startDate"
+               is-open="openedStart"
+               min-date="minDate"
+               max-date="'2015-06-22'"
+               datepicker-options="dateOptions"
+               date-disabled="disabled(date, mode)"
+               ng-required="true"
+               close-text="Close"/>
+              <span>
+                <button type="button" class="btn btn-default" ng-click="openStart($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+    </div>
+    <div class="col-lg-3 col-md-3">
+        <label>End: </label>
+        <br>
+        <input type="text"
+               datepicker-popup="yyyy/MM/dd"
+               ng-model="endDate"
+               is-open="openedEnd"
+               min-date="minDate"
+               max-date="'2015-06-22'"
+               datepicker-options="dateOptions"
+               date-disabled="disabled(date, mode)"
+               ng-required="true"
+               close-text="Close"/>
+              <span>
+                <button type="button" class="btn btn-default" ng-click="openEnd($event)"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+    </div>
+</div>
+
+<div class="row">
     <h1>Visited Countries</h1>
     <canvas width="500px" id="pie" class="chart chart-pie" data="cityData"
             labels="cityLabels"></canvas>
+</div>
+
+<div class="row" >
+    <h1>Weekly Visits</h1>
+    <canvas height="100px" id="line" class="chart chart-line" data="weeklyCounts"
+            labels="weeklyLabels" legend="true" series="weeklySeries"
+            click="onClick">
+    </canvas>
 </div>
 
