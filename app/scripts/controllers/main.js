@@ -8,10 +8,24 @@
  * Controller of the zyringApp
  */
 angular.module('zyringApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('MainCtrl', ['$scope', 'VisitDataResource',
+        function ($scope, VisitDataResource) {
+
+            VisitDataResource.query().$promise.then(function (result) {
+                $scope.currentData = result;
+                calculateCityData();
+            });
+
+            function calculateCityData() {
+                var cityData = _.countBy($scope.currentData, function (elem) {
+                    return elem.country;
+
+                });
+
+                $scope.cityLabels = _.keys(cityData);
+                $scope.cityData = _.values(cityData);
+            }
+
+        }
+    ]
+);
